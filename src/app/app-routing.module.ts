@@ -10,6 +10,14 @@ import { ListarServicosComponent } from './listar-servico/listar-servico.compone
 import { AlterarServicoComponent } from './alterar-servico/alterar-servico.component';
 import { InserirServicoComponent } from './inserir-servico/inserir-servico.component';
 
+import { ListarClienteComponent } from './listar-clientes/listar-clientes.component';
+import { InserirClienteComponent } from './inserir-cliente/inserir-cliente.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
+
+import { ListarFornecedoresComponent } from './listar-fornecedores/listar-fornecedores.component';
+import { InserirFornecedorComponent } from './inserir-fornecedor/inserir-fornecedor.component';
+import { EditarFornecedorComponent } from './editar-fornecedor/editar-fornecedor.component';
+
 const routes: Routes = [
 
   {path: '', redirectTo: 'inicio', pathMatch: 'full'},
@@ -21,7 +29,17 @@ const routes: Routes = [
   
   {path: 'listar-servicos', component: ListarServicosComponent},
   {path: 'inserir-servico', component: InserirServicoComponent},
-  {path: 'alterar-servico/:codigo', component: AlterarServicoComponent}
+
+  {path: 'editar-servico/:codigo', component: EditarServicoComponent},
+
+  {path: 'listar-clientes', component: ListarClienteComponent},
+  {path: 'inserir-cliente', component: InserirClienteComponent},
+  {path: 'editar-cliente', component: EditarClienteComponent},
+
+  {path: 'listar-fornecedores', component: ListarFornecedoresComponent},
+  {path: 'inserir-fornecedor', component: InserirFornecedorComponent},
+  {path: 'editar-fornecedor', component: EditarFornecedorComponent}
+
 
 ];
 
