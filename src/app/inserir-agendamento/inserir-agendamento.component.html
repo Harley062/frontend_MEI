@@ -9,9 +9,6 @@
             <div class="col-4">
                 <label for="titulo_do_servico">Título do Serviço</label>
                 <input type="text" class="form-control" id="titulo_do_servico" name="titulo_do_servico" [(ngModel)]="agendamento.titulo_do_servico" required>
-                <div *ngIf="!agendamento.titulo_do_servico" class="alert alert-danger">
-                    Título do Serviço é obrigatório.
-                </div>
             </div>
         </div>
 
@@ -19,9 +16,6 @@
             <div class="col-4">
                 <label for="telefone">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone" [(ngModel)]="agendamento.telefone" required>
-                <div *ngIf="!agendamento.telefone" class="alert alert-danger">
-                    Telefone é obrigatório.
-                </div>
             </div>
         </div>
 
@@ -29,9 +23,6 @@
             <div class="col-4">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" [(ngModel)]="agendamento.email" required>
-                <div *ngIf="!agendamento.email" class="alert alert-danger">
-                    Email é obrigatório.
-                </div>
             </div>
         </div>
 
@@ -39,9 +30,6 @@
             <div class="col-4">
                 <label for="data_e_hora_inicio">Data e Hora de Início</label>
                 <input type="datetime-local" class="form-control" id="data_e_hora_inicio" name="data_e_hora_inicio" [(ngModel)]="agendamento.data_e_hora_inicio" required>
-                <div *ngIf="!agendamento.data_e_hora_inicio" class="alert alert-danger">
-                    Data e Hora de Início é obrigatório.
-                </div>
             </div>
         </div>
 
@@ -49,9 +37,6 @@
             <div class="col-4">
                 <label for="data_e_hora_fim">Data e Hora de Fim</label>
                 <input type="datetime-local" class="form-control" id="data_e_hora_fim" name="data_e_hora_fim" [(ngModel)]="agendamento.data_e_hora_fim" required>
-                <div *ngIf="!agendamento.data_e_hora_fim" class="alert alert-danger">
-                    Data e Hora de Fim é obrigatório.
-                </div>
             </div>
         </div>
 
@@ -59,9 +44,7 @@
             <div class="col-4">
                 <label for="observacao">Observação</label>
                 <input type="text" class="form-control" id="observacao" name="observacao" [(ngModel)]="agendamento.observacao" required>
-                <div *ngIf="!agendamento.observacao" class="alert alert-danger">
-                    Observação é obrigatória.
-                </div>
+                
             </div>
         </div>
 
