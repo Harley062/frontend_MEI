@@ -1,54 +1,117 @@
 <div class="container">
   <br>
-  <h3>Cadastrar Serviço</h3>
+  <h3>Cadastrar Fornecedor</h3>
   <br>
 
-  <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #fornecedorForm="ngForm">
       <div class="form-group row">
           <div class="col-4">
-              <label for="tituloServico">Título</label>
-              <input type="text" id="tituloServico" class="form-control" placeholder="Desktop com defeito" [(ngModel)]="servico.tituloServico" name="tituloServico" required>
-              <!-- <div *ngIf="serviceForm.submitted && !serviceForm.form.controls.tituloServico?.valid" class="text-danger">
-                  Título é obrigatório.
-              </div> -->
+              <label for="razaoSocial">Razão Social</label>
+              <input type="text" id="razaoSocial" class="form-control" placeholder="Razão Social" [(ngModel)]="fornecedor.razaoSocial" name="razaoSocial" required>
           </div>
       </div>
 
       <div class="form-group row">
           <div class="col-4">
-              <label for="cliente">Nome Cliente</label>
-              <input type="text" id="cliente" class="form-control" placeholder="Marcelo Freitas"  name="cliente" required>
-              <!-- <div *ngIf="serviceForm.submitted && !serviceForm.form.controls.cliente?.valid" class="text-danger">
-                  Nome do cliente é obrigatório.
-              </div> -->
+              <label for="nomeContato">Nome do Contato</label>
+              <input type="text" id="nomeContato" class="form-control" placeholder="Nome do contato" [(ngModel)]="fornecedor.nomeContato" name="nomeContato" required>
           </div>
       </div>
 
       <div class="form-group row">
           <div class="col-4">
-              <label for="valorServico">Valor</label>
-              <input type="number" id="valorServico" class="form-control" placeholder="R$ 00,00" [(ngModel)]="servico.valorServico" name="valorServico" required>
-              <!-- <div *ngIf="serviceForm.submitted && !serviceForm.form.controls.valorServico?.valid" class="text-danger">
-                  Valor é obrigatório e deve ser numérico.
-              </div> -->
+              <label for="documento">CNPJ</label>
+              <input type="text" id="documento" class="form-control" placeholder="Digite o CNPJ" [(ngModel)]="documento" name="documento" (blur)="atualizarDocumento()">
+              <div *ngIf="fornecedorForm.submitted && documentoInvalido" class="text-danger">
+                  CNPJ inválido. Informe um CNPJ válido.
+              </div>
           </div>
       </div>
 
       <div class="form-group row">
           <div class="col-4">
-              <label for="status">Status</label>
-              <select id="status" class="form-control" [(ngModel)]="servico.status" name="status">
-                  <option value="Cadastrado">Cadastrado</option>
-                  <option value="Em Andamento">Em Andamento</option>
-                  <option value="Finalizado">Finalizado</option>
+              <label for="telefone1">Telefone</label>
+              <input type="text" id="telefone1" class="form-control" placeholder="(xx) xxxx-xxxx" [(ngModel)]="fornecedor.telefone1" name="telefone1" required>
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <div class="col-4">
+              <label for="telefone2">Telefone Secundario</label>
+              <input type="text" id="telefone2" class="form-control" placeholder="(xx) xxxx-xxxx" [(ngModel)]="fornecedor.telefone2" name="telefone2">
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <div class="col-4">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="Email do fornecedor" [(ngModel)]="fornecedor.email" name="email" required>
+          </div>
+      </div>
+
+      <h4>Endereço</h4>
+      <div class="form-group row">
+          <div class="col-4">
+              <label for="logradouro">Logradouro</label>
+              <input type="text" id="logradouro" class="form-control" placeholder="Rua Exemplo" [(ngModel)]="fornecedor.endereco.logradouro" name="logradouro" required>
+          </div>
+          <div class="col-4">
+              <label for="numero">Número</label>
+              <input type="text" id="numero" class="form-control" placeholder="123" [(ngModel)]="fornecedor.endereco.numero" name="numero">
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <div class="col-4">
+              <label for="bairro">Bairro</label>
+              <input type="text" id="bairro" class="form-control" placeholder="Bairro Exemplo" [(ngModel)]="fornecedor.endereco.bairro" name="bairro">
+          </div>
+          <div class="col-4">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" class="form-control" placeholder="Cidade" [(ngModel)]="fornecedor.endereco.cidade" name="cidade" required>
+          </div>
+          <div class="col-4">
+              <label for="uf">UF</label>
+              <select id="uf" class="form-control" [(ngModel)]="fornecedor.endereco.uf" name="uf" required>
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
               </select>
           </div>
       </div>
 
       <div class="form-group row">
           <div class="col-4">
-              <label for="descricaoServico">Descrição</label>
-              <textarea id="descricaoServico" class="form-control" rows="3" placeholder="Descrição do serviço..." [(ngModel)]="servico.descricaoServico" name="descricaoServico" required></textarea>
+              <label for="cep">CEP</label>
+              <input type="text" id="cep" class="form-control" placeholder="00000-000" [(ngModel)]="fornecedor.endereco.cep" name="cep">
+          </div>
+          <div class="col-4">
+              <label for="complemento">Complemento</label>
+              <input type="text" id="complemento" class="form-control" placeholder="Apartamento, casa, etc." [(ngModel)]="fornecedor.endereco.complemento" name="complemento">
           </div>
       </div>
 
@@ -61,4 +124,3 @@
       </div>
   </form>
 </div>
-

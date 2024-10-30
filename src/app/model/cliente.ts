@@ -7,10 +7,10 @@ export class Cliente {
   sexo?: string;
   cpf?: string;
   cnpj?: string;
-  telefoneResidencial!: string;
-  telefoneComercial!: string;
+  telefoneResidencial?: string;
+  telefoneComercial?: string;
   telefoneCelular!: string;
-  email!: string;
+  email?: string;
   endereco!: Endereco;
-  
+
 }

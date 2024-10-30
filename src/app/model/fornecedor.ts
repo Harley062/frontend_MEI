@@ -6,9 +6,9 @@ export class Fornecedor {
     razaoSocial!: string;
     cnpj!: string;
     telefone1!: string;
-    telefone2!: string;
+    telefone2?: string;
     nomeContato!: string;
     email!: string;
-    Endereco!: Endereco;
+    endereco!: Endereco;
 
 }

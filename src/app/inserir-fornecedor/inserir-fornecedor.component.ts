@@ -9,8 +9,9 @@ import { FornecedorService } from './../services/fornecedor.service';
   styleUrls: ['./inserir-fornecedor.component.css']
 })
 export class InserirFornecedorComponent implements OnInit {
-  codigo!: number;
   fornecedor: Fornecedor = new Fornecedor();
+  documento: string = '';
+  documentoInvalido: boolean = false;
 
   constructor(private fornecedorService: FornecedorService, private router: Router) { }
 
@@ -23,10 +24,29 @@ export class InserirFornecedorComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.fornecedor.codigo = 0;
-    this.fornecedorService.incluirFornecedor(this.fornecedor).subscribe(data => {
-      console.log(data);
-      this.retornar();
-    });
+    this.atualizarDocumento();
+
+    if (!this.documentoInvalido) {
+      this.fornecedorService.incluirFornecedor(this.fornecedor).subscribe(data => {
+        console.log('Fornecedor cadastrado:', data);
+        this.retornar();
+      });
+    } else {
+      console.error('CNPJ inválido. Não foi possível cadastrar o fornecedor.');
+    }
+  }
+
+  atualizarDocumento() {
+    const documentoLimpo = this.documento.replace(/\D/g, '');
+
+    if (documentoLimpo.length === 14) {
+      this.fornecedor.cnpj = documentoLimpo;
+      this.documentoInvalido = false;
+    } else {
+      this.documentoInvalido = true;
+      this.fornecedor.cnpj = '';
+    }
   }
 }

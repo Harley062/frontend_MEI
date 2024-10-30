@@ -11,6 +11,8 @@ import { ClienteService } from './../services/cliente.service';
 export class InserirClienteComponent implements OnInit {
   codigo!: number;
   cliente: Cliente = new Cliente();
+  documento: string = '';
+  documentoInvalido: boolean = false;
 
   constructor(private clienteService: ClienteService, private router: Router) { }
 
@@ -23,10 +25,35 @@ export class InserirClienteComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.cliente.codigo = 0;
-    this.clienteService.incluirCliente(this.cliente).subscribe(data => {
-      console.log(data);
-      this.retornar();
-    });
+    this.atualizarDocumento();
+
+    if (!this.documentoInvalido) {
+      this.clienteService.incluirCliente(this.cliente).subscribe(data => {
+        console.log('Cliente cadastrado:', data);
+        this.retornar();
+      });
+    } else {
+      console.error('Documento inválido. Não foi possível cadastrar o cliente.');
+    }
+  }
+
+  atualizarDocumento() {
+    const documentoLimpo = this.documento.replace(/\D/g, '');
+
+    if (documentoLimpo.length === 11) {
+      this.cliente.cpf = documentoLimpo;
+      this.cliente.cnpj = undefined;
+      this.documentoInvalido = false;
+    } else if (documentoLimpo.length === 14) {
+      this.cliente.cnpj = documentoLimpo;
+      this.cliente.cpf = undefined;
+      this.documentoInvalido = false;
+    } else {
+      this.documentoInvalido = true;
+      this.cliente.cpf = undefined;
+      this.cliente.cnpj = undefined;
+    }
   }
 }
